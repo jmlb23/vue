@@ -4,33 +4,39 @@
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const {
+  VueLoaderPlugin
+} = require('vue-loader')
 
 module.exports = {
   mode: "production",
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
   module: {
     rules: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
+      test: /\.vue$/,
+      loader: 'vue-loader'
     }, {
-      test: /\.css$/i,
-      loader: "css-loader",
+      test: /\.ts$/,
+      loader: 'ts-loader',
       options: {
-        import: true,
+        appendTsSuffixTo: [/\.vue$/]
       }
+    }, {
+      test: /\.css$/,
+      use: [
+        'style-loader',
+        'css-loader'
+      ]
     }]
   },
   resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm-browser.prod'
-    },
-    extensions: ['.js']
+    extensions: [".ts", ".tsx", ".js"]
   },
   devServer: {
     port: 9000,
     compress: true,
     contentBase: `/dist`,
+    historyApiFallback: true
   },
   output: {
     publicPath: `/`,
@@ -40,6 +46,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'public/index.html'
-    })
+    }),
+    new VueLoaderPlugin()
   ]
 }
