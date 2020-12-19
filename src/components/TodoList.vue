@@ -15,29 +15,30 @@
   </div>
 </template>
 
-<script>
-import TodoItem from "./todo-item.vue";
+<script lang="ts">
+import TodoItem from "./TodoItem.vue";
+import { Component, defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   components: {
     "todo-item": TodoItem,
   },
-  data: () => {
+  data(): { current: string; list: { current: string; done: boolean }[] } {
     return {
       current: "",
       list: [],
     };
   },
   computed: {
-    elementsToBeDone() {
+    elementsToBeDone(): number {
       return this.list.filter((x) => !x.done).length;
     },
   },
   methods: {
-    remove(todo) {
+    remove(todo: string) {
       this.list = this.list.filter((x) => x.current != todo);
     },
-    isDoneListener(todo, done) {
+    isDoneListener(todo: string, done: boolean) {
       const index = this.list.map((x) => x.current).indexOf(todo);
       console.log(index);
       this.list[index].done = done;
@@ -50,5 +51,5 @@ export default {
       this.current = "";
     },
   },
-};
+});
 </script>

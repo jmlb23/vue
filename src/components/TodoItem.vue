@@ -12,8 +12,9 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
   props: {
     todo: {
       type: String,
@@ -30,12 +31,12 @@ export default {
     };
   },
   methods: {
-    onRemove(event) {
+    onRemove(event: Event) {
       this.$emit("remove-event", this.todo);
     },
-    onCheck(event) {
+    onCheck(event: Event) {
       this.$emit("check-event", this.todo, this.isDone);
     },
   },
-};
+});
 </script>

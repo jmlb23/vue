@@ -10,19 +10,24 @@ const {
 
 module.exports = {
   mode: "production",
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
   module: {
     rules: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    }, {
       test: /\.vue$/,
-      loader: 'vue-loader'
-    }, ]
+      loader: 'vue-loader',
+      options: {
+        esModule: true
+      }
+    }, {
+      test: /\.ts$/,
+      loader: 'ts-loader',
+      options: {
+        appendTsSuffixTo: [/\.vue$/]
+      }
+    }]
   },
   resolve: {
-    extensions: ['.js']
+    extensions: [".ts", ".tsx", ".js"]
   },
   devServer: {
     port: 9000,
