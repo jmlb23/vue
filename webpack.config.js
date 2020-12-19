@@ -14,16 +14,19 @@ module.exports = {
   module: {
     rules: [{
       test: /\.vue$/,
-      loader: 'vue-loader',
-      options: {
-        esModule: true
-      }
+      loader: 'vue-loader'
     }, {
       test: /\.ts$/,
       loader: 'ts-loader',
       options: {
         appendTsSuffixTo: [/\.vue$/]
       }
+    }, {
+      test: /\.css$/,
+      use: [
+        'style-loader',
+        'css-loader'
+      ]
     }]
   },
   resolve: {
@@ -33,6 +36,7 @@ module.exports = {
     port: 9000,
     compress: true,
     contentBase: `/dist`,
+    historyApiFallback: true
   },
   output: {
     publicPath: `/`,
