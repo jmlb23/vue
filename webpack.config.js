@@ -9,7 +9,7 @@ const {
 } = require('vue-loader')
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: "./src/index.ts",
   module: {
     rules: [{

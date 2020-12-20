@@ -1,6 +1,11 @@
 <style>
 :root {
-  --color-primary: #979797;
+  --color-primary: #b2fab4;
+  --color-secondary: #eceff1;
+}
+body {
+  padding: 0;
+  margin: 0;
 }
 </style>
 
