@@ -8,6 +8,7 @@ import SignUp from "./views/SignUp.vue";
 import SignIn from "./views/SignIn.vue";
 import Home from "./views/Home.vue";
 import NotFound from "./views/NotFound.vue";
+import Profile from "./views/Profile.vue";
 
 const routes: RouteRecordRaw[] = [{
   path: "/",
@@ -21,6 +22,11 @@ const routes: RouteRecordRaw[] = [{
   path: "/signin",
   name: "Sign In",
   component: SignIn
+},{
+  path: "/profile/:id",
+  name: "Profile",
+  component: Profile,
+  props: (route) => ({username: route.params.idz})
 }, {
   path: "/:catchAll(.*)",
   name: "Not Found",

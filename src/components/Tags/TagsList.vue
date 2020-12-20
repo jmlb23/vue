@@ -1,7 +1,7 @@
 <style scoped>
 aside {
   background-color: var(--color-secondary);
-  border: 1px solid navy;
+  border: 1px solid var(--color-primary);
   width: 15%;
   padding: 10px;
   border-radius: 5px;

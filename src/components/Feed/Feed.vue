@@ -7,7 +7,7 @@ ul {
 }
 li{
   margin-right: 5px;
-  background-color: var(--color-primary);
+  color: var(--color-primary);
   padding: 5px;
 }
 .feed__container {

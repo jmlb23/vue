@@ -4,7 +4,6 @@
   width: 100%;
   height: 10em;
   text-align: center;
-  justify-content: center;
 }
 
 .home__div__container {
@@ -23,30 +22,45 @@ ul {
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  width: 30%;
 }
 
 li {
   list-style: none;
   padding: 10px;
+  margin: 5px;
   background-color: var(--color-primary);
   border: 2px solid var(--color-secondary);
   border-radius: 5px;
 }
+
+li:active {
+  background-color: #ffbb93;
+  background-size: 100%;
+  transition: background 0s;
+  color: #555555;
+}
+.home__div{
+  margin: 0;
+  padding: 0;
+}
 </style>
 
 <template>
-  <div class="home__div__banner">
-    <h1>Home</h1>
-  </div>
-  <loader :width="100" :height="100" v-if="tags.length === 0 || articles.length === 0"/>
-  <div v-else>
-    <div class="home__div__container">
-      <feed :feed="articles" :tag="tagSelected"/>
-      <tag-list @selected="onTagSelected" :tags="tags"/>
+  <div class="home__div">
+    <div class="home__div__banner">
+      <h1>Home</h1>
     </div>
-    <ul>
-      <li @click="onPageSelected(p)" v-for="p in Array.from(Array(pages).keys())">{{ p }}</li>
-    </ul>
+    <loader :width="100" :height="100" v-if="tags.length === 0 || articles.length === 0"/>
+    <div v-else>
+      <div class="home__div__container">
+        <feed :feed="articles" :tag="tagSelected"/>
+        <tag-list @selected="onTagSelected" :tags="tags"/>
+      </div>
+      <ul>
+        <li @click="onPageSelected(p)" v-for="p in Array.from(Array(pages).keys())">{{ p }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -77,7 +91,7 @@ export default defineComponent({
   methods: {
     onPageSelected(page: number) {
       this.page = page
-      this.getAsyncArticles(page, undefined).then(x => this.articles = x);
+      this.getAsyncArticles(page, this.tagSelected).then(x => this.articles = x);
     },
     async getAsyncArticles(page: number, tag: string | undefined): Promise<ArticleFeed[]> {
       const articles = await apiClient.getArticles(page, tag)

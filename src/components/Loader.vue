@@ -14,7 +14,6 @@ svg{
 <template>
   <div>
     <svg
-
         :height="height"
         :width="width"
         x="0px"
