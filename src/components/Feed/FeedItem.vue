@@ -33,7 +33,7 @@ button {
   transition: background 0.8s;
 }
 
-button:active{
+button:active {
   background-color: #ffbb93;
   background-size: 100%;
   transition: background 0s;
@@ -45,7 +45,7 @@ button:active{
   <div>
     <header>
       <router-link :to="`/profile/${article.author.username}`">
-        <img :src="article.author.image" alt="profile"/>
+        <img :src="article.author.image" alt="profile" />
       </router-link>
       <div>
         <div>
@@ -54,7 +54,7 @@ button:active{
           </router-link>
           <p>{{ article.updatedAt }}</p>
         </div>
-        <button> &hearts; {{ article.favoritesCount }}</button>
+        <button>&hearts; {{ article.favoritesCount }}</button>
       </div>
     </header>
     <div>
@@ -65,18 +65,18 @@ button:active{
       <router-link :to="`/article/${article.slug}`">Read More</router-link>
     </footer>
   </div>
-  <hr/>
+  <hr />
 </template>
 
 <script lang="ts">
-import {ArticleFeed} from "@/src/data/ArticleDTOS";
-import Vue, {defineComponent} from "vue";
+import { ArticleFeed } from "@/src/data/ArticleDTOS";
+import Vue, { defineComponent } from "vue";
 
 export default defineComponent({
   props: {
     article: {
       type: Object as () => ArticleFeed,
     },
-  }
+  },
 });
 </script>

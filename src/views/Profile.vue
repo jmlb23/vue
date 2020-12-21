@@ -117,7 +117,13 @@ footer {
   color: var(--color-secondary);
   border: 1px solid var(--color-primary);
 }
-
+.profile__follow:active {
+  background-color: var(--color-primary);
+  opacity: 0.8;
+  background-size: 100%;
+  transition: background 0s;
+  color: #555555;
+}
 .profile__plus {
   margin-right: 5px;
 }

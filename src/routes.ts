@@ -9,6 +9,7 @@ import SignIn from "./views/SignIn.vue";
 import Home from "./views/Home.vue";
 import NotFound from "./views/NotFound.vue";
 import Profile from "./views/Profile.vue";
+import Article from "./views/Article.vue";
 
 const routes: RouteRecordRaw[] = [{
   path: "/",
@@ -31,6 +32,10 @@ const routes: RouteRecordRaw[] = [{
   path: "/profile/:id/favorites",
   component: Profile,
   props: (route) => ({ username: route.params.id }),
+}, {
+  path: "/article/:slug",
+  component: Article,
+  props: (route) => ({ slug: route.params.slug }),
 },
 {
   path: "/:catchAll(.*)",

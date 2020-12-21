@@ -2,8 +2,9 @@
 .home__div__banner {
   background-color: var(--color-primary);
   width: 100%;
-  height: 10em;
-  text-align: center;
+  padding: 5% 0 5% 0;
+  justify-content: center;
+  display: flex;
 }
 
 .home__div__container {
