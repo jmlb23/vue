@@ -59,7 +59,7 @@ button:active{
     </header>
     <div>
       <p>{{ article.title }}</p>
-      <p>{{ article.body }}</p>
+      <p>{{ article.description }}</p>
     </div>
     <footer>
       <router-link :to="`/article/${article.slug}`">Read More</router-link>

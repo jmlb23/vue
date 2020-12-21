@@ -22,12 +22,17 @@ const routes: RouteRecordRaw[] = [{
   path: "/signin",
   name: "Sign In",
   component: SignIn
-},{
-  path: "/profile/:id",
-  name: "Profile",
-  component: Profile,
-  props: (route) => ({username: route.params.idz})
 }, {
+  path: "/profile/:id",
+  component: Profile,
+  props: (route) => ({ username: route.params.id }),
+},
+{
+  path: "/profile/:id/favorites",
+  component: Profile,
+  props: (route) => ({ username: route.params.id }),
+},
+{
   path: "/:catchAll(.*)",
   name: "Not Found",
   component: NotFound,

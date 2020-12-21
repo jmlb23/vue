@@ -3,7 +3,7 @@
   --color-primary: #ff8a65;
   --color-secondary: #dedede;
   --text-color: #000000;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -38,7 +38,7 @@ nav {
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "app",
