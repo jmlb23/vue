@@ -25,7 +25,7 @@
 </style>
 
 <template>
-  <div :v-if="showing" class="modal-transparency" @click="onClickPrevent()">
+  <div :v-if="show" class="modal-transparency" @click="onClickPrevent()">
     <div class="modal__container" @click="onClickDismiss()">
       <header></header>
     </div>

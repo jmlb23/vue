@@ -29,8 +29,25 @@ nav {
   <header>
     <nav class="header__main">
       <router-link class="nav__link" to="/">Home</router-link>
-      <router-link class="nav__link" to="signup">Sign up</router-link>
-      <router-link class="nav__link" to="signin">Sign in</router-link>
+      <router-link v-if="isNotLogged" class="nav__link" to="/signup"
+        >Sign up</router-link
+      >
+      <router-link v-if="isNotLogged" class="nav__link" to="/signin"
+        >Sign in</router-link
+      >
+      <router-link v-if="isLogged" class="nav__link" to="/editor"
+        >New Article</router-link
+      >
+      <router-link v-if="isLogged" class="nav__link" to="/settings"
+        >Settings</router-link
+      >
+      <router-link
+        v-if="isLogged"
+        class="nav__link"
+        :to="`/profile/${user?.username}`"
+      >
+        {{ user?.username }}
+      </router-link>
     </nav>
   </header>
   <router-view></router-view>
@@ -39,8 +56,24 @@ nav {
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { mapState } from "vuex";
+import { apiClient } from "../data/Api";
+import { Profile } from "../data/ProfileDTOS";
+import { User } from "../data/UserDTOS";
+import { store } from "../state/store";
 
 export default defineComponent({
   name: "app",
+  computed: {
+    isNotLogged(): boolean {
+      return !store.getters.isLogged;
+    },
+    isLogged(): boolean {
+      return store.getters.isLogged;
+    },
+    user(): User | undefined {
+      return store.getters.user;
+    },
+  },
 });
 </script>

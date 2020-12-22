@@ -50,8 +50,10 @@
       </router-link>
       <p>{{ date }}</p>
     </div>
-    <button class="button">&plus; {{ username }}</button>
-    <button class="button">&hearts; Favorite Article ({{ count ?? 0 }})</button>
+    <button class="button" @click="onClickFollow">&plus; {{ username }}</button>
+    <button class="button" @click="onClickFav">
+      &hearts; Favorite Article ({{ count ?? 0 }})
+    </button>
   </div>
 </template>
 
@@ -63,6 +65,14 @@ export default defineComponent({
     username: String,
     date: String,
     image: String,
+  },
+  methods: {
+    onClickFav(e: Event) {
+      console.log(e);
+    },
+    onClickFollow(e: Event) {
+      console.log(e);
+    },
   },
 });
 </script>
