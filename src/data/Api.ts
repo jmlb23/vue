@@ -1,6 +1,6 @@
 import { Article, ArticleFeed, ArticlesFeed } from "./ArticleDTOS";
 import { Comment } from "./CommentDTOS";
-import { construct, Errors, isOther } from "./Error";
+import { construct, Errors, isErrors, isOther } from "./Error";
 import { Profile } from "./ProfileDTOS";
 import { LoginDTO as Login, Register, User, UserUpdate } from "./UserDTOS";
 
@@ -47,7 +47,7 @@ class ApiImpl implements Api {
   login(login: Login): Promise<User | Errors> {
     return fetch(this.url("users", "login"), { body: JSON.stringify({ "user": login }), method: "post", headers: { "Content-Type": "application/json" } })
       .then(this.middleware)
-      .then(x => isOther(x) ? x.json().then(x => (x as ({ user: User })).user) : x);
+      .then(x => isErrors(x) ? x : x.json().then(x => (x as ({ user: User })).user));
   }
   addUser(register: Register): Promise<User | Errors> {
     return fetch(this.url("users"), { body: JSON.stringify({ "user": register }), method: "post", headers: { "Content-Type": "application/json" } })

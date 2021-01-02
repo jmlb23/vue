@@ -9,10 +9,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import { useStore } from "vuex";
 import { apiClient } from "../data/Api";
 import { isOther } from "../data/Error";
-import { store } from "../state/store";
+import { router } from "../routes";
 export default defineComponent({
   data() {
     return {
@@ -25,7 +26,9 @@ export default defineComponent({
       apiClient
         .login({ email: this.email, password: this.password })
         .then((x) =>
-          isOther(x) ? store.dispatch("token", x.token) : Promise.resolve(x)
+          isOther(x)
+            ? this.$store.dispatch("token", x.token)
+            : Promise.resolve(x)
         );
     },
   },

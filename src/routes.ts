@@ -10,6 +10,7 @@ import Home from "./views/Home.vue";
 import NotFound from "./views/NotFound.vue";
 import Profile from "./views/Profile.vue";
 import Article from "./views/Article.vue";
+import Settings from "./views/Settings.vue";
 
 const routes: RouteRecordRaw[] = [{
   path: "/",
@@ -36,11 +37,16 @@ const routes: RouteRecordRaw[] = [{
   path: "/article/:slug",
   component: Article,
   props: (route) => ({ slug: route.params.slug }),
+}, {
+  path: "/settings",
+  component: Settings,
+  props: (route) => ({ slug: route.params.slug }),
 },
 {
   path: "/:catchAll(.*)",
   name: "Not Found",
   component: NotFound,
+
 }];
 
 export const router = createRouter({ history: createWebHistory(), routes: routes });

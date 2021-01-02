@@ -29,10 +29,10 @@ nav {
   <header>
     <nav class="header__main">
       <router-link class="nav__link" to="/">Home</router-link>
-      <router-link v-if="isNotLogged" class="nav__link" to="/signup"
+      <router-link v-if="!isLogged" class="nav__link" to="/signup"
         >Sign up</router-link
       >
-      <router-link v-if="isNotLogged" class="nav__link" to="/signin"
+      <router-link v-if="!isLogged" class="nav__link" to="/signin"
         >Sign in</router-link
       >
       <router-link v-if="isLogged" class="nav__link" to="/editor"
@@ -55,24 +55,21 @@ nav {
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { mapState } from "vuex";
+import { computed, defineComponent, reactive, ref } from "vue";
+import { useStore } from "vuex";
 import { apiClient } from "../data/Api";
 import { Profile } from "../data/ProfileDTOS";
 import { User } from "../data/UserDTOS";
-import { store } from "../state/store";
+import { router } from "../routes";
 
 export default defineComponent({
   name: "app",
   computed: {
-    isNotLogged(): boolean {
-      return !store.getters.isLogged;
-    },
     isLogged(): boolean {
-      return store.getters.isLogged;
+      return this.$store.getters.isLogged;
     },
     user(): User | undefined {
-      return store.getters.user;
+      return this.$store.getters.user;
     },
   },
 });
