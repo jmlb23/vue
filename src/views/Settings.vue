@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { Store, useStore } from "vuex";
-import { router } from "../routes";
+import {defineComponent} from "vue";
+import {router} from "../routes";
+
 export default defineComponent({
   methods: {
     onClickLogout() {

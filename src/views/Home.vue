@@ -55,9 +55,11 @@ li:active {
   margin-right: auto;
   display: flex;
 }
+
 .home__feed__separator {
   width: 90%;
 }
+
 .home__feed__menu > p {
   margin-right: 5px;
   color: var(--color-primary);
@@ -71,9 +73,9 @@ li:active {
       <h1>Home</h1>
     </div>
     <loader
-      :width="100"
-      :height="100"
-      v-if="tags.length === 0 || articles.length === 0"
+        :width="100"
+        :height="100"
+        v-if="tags.length === 0 || articles.length === 0"
     />
     <div v-else>
       <div class="home__feed__menu">
@@ -82,16 +84,16 @@ li:active {
           {{ tagSelected }}
         </p>
       </div>
-      <hr class="home__feed__separator" />
+      <hr class="home__feed__separator"/>
       <div class="home__div__container">
-        <feed :feed="articles" />
-        <tag-list @selected="onTagSelected" :tags="tags" />
+        <feed :feed="articles"/>
+        <tag-list @selected="onTagSelected" :tags="tags"/>
       </div>
       <ul>
         <li
-          :key="p"
-          @click="onPageSelected(p)"
-          v-for="p in Array.from(Array(pages).keys())"
+            :key="p"
+            @click="onPageSelected(p)"
+            v-for="p in Array.from(Array(pages).keys())"
         >
           {{ p }}
         </li>
@@ -101,12 +103,12 @@ li:active {
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import Feed from "../components/Feed/Feed.vue";
 import TagsList from "../components/Tags/TagsList.vue";
-import { apiClient } from "../data/Api";
-import { ArticleFeed } from "../data/ArticleDTOS";
-import { isOther } from "../data/Error";
+import {apiClient} from "../data/Api";
+import {ArticleFeed} from "../data/ArticleDTOS";
+import {isOther} from "../data/Error";
 import Loader from "../components/Loader.vue";
 
 export default defineComponent({
@@ -129,12 +131,12 @@ export default defineComponent({
     onPageSelected(page: number) {
       this.page = page;
       this.getAsyncArticles(page, this.tagSelected).then(
-        (x) => (this.articles = x)
+          (x) => (this.articles = x)
       );
     },
     async getAsyncArticles(
-      page: number,
-      tag: string | undefined
+        page: number,
+        tag: string | undefined
     ): Promise<ArticleFeed[]> {
       const articles = await apiClient.getArticles(page, tag);
       return isOther(articles) ? articles.articles : [];
@@ -156,7 +158,7 @@ export default defineComponent({
   mounted() {
     this.getAsyncTags().then((x) => (this.tags = x));
     this.getAsyncArticles(this.page, undefined).then(
-      (x) => (this.articles = x)
+        (x) => (this.articles = x)
     );
     this.getAsyncCount().then((x) => (this.pages = x / 20));
   },

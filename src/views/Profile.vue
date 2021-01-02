@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <img class="profile__img" :src="profile?.image" />
+      <img class="profile__img" :src="profile?.image"/>
       <p class="profile__name">{{ profile?.username }}</p>
       <button class="profile__follow">
         <b class="profile__plus">&plus;</b
@@ -15,22 +15,23 @@
         </li>
         <li class="profile__menu__item">
           <router-link :to="`/profile/${username}/favorites`"
-            >Favorite articles</router-link
+          >Favorite articles
+          </router-link
           >
         </li>
       </ul>
-      <feed :feed="feeds" />
+      <feed :feed="feeds"/>
     </footer>
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import Feed from "../components/Feed/Feed.vue";
-import { apiClient } from "../data/Api";
-import { isOther } from "../data/Error";
-import { Profile } from "../data/ProfileDTOS";
-import { ArticleFeed } from "../data/ArticleDTOS";
+import {apiClient} from "../data/Api";
+import {isOther} from "../data/Error";
+import {Profile} from "../data/ProfileDTOS";
+import {ArticleFeed} from "../data/ArticleDTOS";
 
 type ProfileData = {
   profile: Profile | undefined;
@@ -38,7 +39,7 @@ type ProfileData = {
 };
 
 export default defineComponent({
-  components: { Feed },
+  components: {Feed},
   props: {
     username: String,
   },
@@ -51,19 +52,19 @@ export default defineComponent({
   methods: {
     getCurrentProfile() {
       apiClient
-        .getProfile(this.username ?? "")
-        .then((x) => (isOther(x) ? (this.profile = x) : x))
-        .catch(console.error);
+          .getProfile(this.username ?? "")
+          .then((x) => (isOther(x) ? (this.profile = x) : x))
+          .catch(console.error);
     },
     getArticles(favs: boolean) {
       apiClient
-        .getArticles(
-          0,
-          undefined,
-          favs ? this.username : undefined,
-          favs ? undefined : this.username
-        )
-        .then((x) => (isOther(x) ? (this.feeds = x.articles) : x));
+          .getArticles(
+              0,
+              undefined,
+              favs ? this.username : undefined,
+              favs ? undefined : this.username
+          )
+          .then((x) => (isOther(x) ? (this.feeds = x.articles) : x));
     },
   },
   mounted() {
@@ -87,6 +88,7 @@ header {
 footer {
   padding: 20px 15% 20px 15%;
 }
+
 .profile__img {
   display: flex;
   margin-left: auto;
@@ -95,6 +97,7 @@ footer {
   height: 200px;
   width: 200px;
 }
+
 .profile__name {
   text-align: center;
 }
@@ -117,6 +120,7 @@ footer {
   color: var(--color-secondary);
   border: 1px solid var(--color-primary);
 }
+
 .profile__follow:active {
   background-color: var(--color-primary);
   opacity: 0.8;
@@ -124,6 +128,7 @@ footer {
   transition: background 0s;
   color: #555555;
 }
+
 .profile__plus {
   margin-right: 5px;
 }

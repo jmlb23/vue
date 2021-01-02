@@ -10,8 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { useStore } from "vuex";
+import { defineComponent } from "vue";
 import { apiClient } from "../data/Api";
 import { isOther } from "../data/Error";
 export default defineComponent({

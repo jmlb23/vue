@@ -30,21 +30,25 @@ nav {
     <nav class="header__main">
       <router-link class="nav__link" to="/">Home</router-link>
       <router-link v-if="!isLogged" class="nav__link" to="/signup"
-        >Sign up</router-link
+      >Sign up
+      </router-link
       >
       <router-link v-if="!isLogged" class="nav__link" to="/signin"
-        >Sign in</router-link
+      >Sign in
+      </router-link
       >
       <router-link v-if="isLogged" class="nav__link" to="/editor"
-        >New Article</router-link
+      >New Article
+      </router-link
       >
       <router-link v-if="isLogged" class="nav__link" to="/settings"
-        >Settings</router-link
+      >Settings
+      </router-link
       >
       <router-link
-        v-if="isLogged"
-        class="nav__link"
-        :to="`/profile/${user?.username}`"
+          v-if="isLogged"
+          class="nav__link"
+          :to="`/profile/${user?.username}`"
       >
         {{ user?.username }}
       </router-link>
@@ -55,12 +59,8 @@ nav {
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, ref } from "vue";
-import { useStore } from "vuex";
-import { apiClient } from "../data/Api";
-import { Profile } from "../data/ProfileDTOS";
-import { User } from "../data/UserDTOS";
-import { router } from "../routes";
+import {defineComponent} from "vue";
+import {User} from "../data/UserDTOS";
 
 export default defineComponent({
   name: "app",

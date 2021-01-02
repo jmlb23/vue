@@ -6,6 +6,7 @@ header {
   background-color: var(--color-secondary);
   flex-direction: column;
 }
+
 h1 {
   padding-left: 20%;
   padding-right: 20%;
@@ -15,17 +16,21 @@ h1 {
   padding-left: 20%;
   padding-right: 20%;
 }
+
 footer {
   display: flex;
 }
+
 .center {
   margin-left: auto;
   margin-right: auto;
 }
+
 .padding {
   padding-left: 20%;
   padding-right: 20%;
 }
+
 hr {
   margin-left: 20%;
   margin-right: 20%;
@@ -37,35 +42,36 @@ hr {
     <header>
       <h1>{{ article?.title }}</h1>
       <user-presence
-        class="padding"
-        :username="article?.author?.username"
-        :count="article?.favoritesCount"
-        :date="article?.updatedAt"
-        :image="article?.author.image"
+          :count="article?.favoritesCount"
+          :date="article?.updatedAt"
+          :image="article?.author.image"
+          :username="article?.author?.username"
+          class="padding"
       />
     </header>
     <div class="div__body">
       <p>{{ article?.body }}</p>
     </div>
-    <hr />
+    <hr/>
     <footer>
       <user-presence
-        class="center"
-        :username="article?.author?.username"
-        :count="article?.favoritesCount"
-        :date="article?.updatedAt"
-        :image="article?.author?.image"
+          :count="article?.favoritesCount"
+          :date="article?.updatedAt"
+          :image="article?.author?.image"
+          :username="article?.author?.username"
+          class="center"
       />
     </footer>
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import UserPresence from "../components/UserPresence.vue";
-import { apiClient } from "../data/Api";
-import { ArticleFeed } from "../data/ArticleDTOS";
-import { isOther } from "../data/Error";
+import {apiClient} from "../data/Api";
+import {ArticleFeed} from "../data/ArticleDTOS";
+import {isOther} from "../data/Error";
+
 export default defineComponent({
   components: {
     "user-presence": UserPresence,
@@ -84,8 +90,8 @@ export default defineComponent({
   methods: {
     getArticles() {
       apiClient
-        .getArticle(this.slug)
-        .then((x) => (isOther(x) ? (this.article = x) : x));
+          .getArticle(this.slug)
+          .then((x) => (isOther(x) ? (this.article = x) : x));
     },
   },
   mounted() {
